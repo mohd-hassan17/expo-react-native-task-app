@@ -2,12 +2,14 @@ import Colors from "@/constants/Colors";
 import { Task } from "@/constants/tasks";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useRouter } from "expo-router"; 
 
 const STATUS_COLOR = {
-  Done: Colors.statusDone,
+  "Done": Colors.statusDone,
   "In Progress": Colors.statusInProgress,
   "To-do": Colors.statusTodo,
+  "Completed": Colors.statusDone,
 };
 
 type TaskCardProps = {
@@ -15,7 +17,13 @@ type TaskCardProps = {
 };
 
 const TaskCard = ({ task }: TaskCardProps) => {
+
+  const router = useRouter(); // 👈 get the router instance
   return (
+    <TouchableOpacity
+      onPress={() => router.push(`/task/${task.id}` as any)} 
+      activeOpacity={0.8}
+    >
     <View style={styles.card}>
       <View style={styles.content}>
         <Text style={styles.category}>{task.category}</Text>
@@ -40,8 +48,11 @@ const TaskCard = ({ task }: TaskCardProps) => {
         ]}
       >
         <Ionicons name={task.icon.name as any} size={18} color={"#ffffff"} />
+        
       </View>
+      
     </View>
+    </TouchableOpacity>
   );
 };
 
@@ -51,7 +62,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: Colors.surface,
     borderRadius: 18,
-    padding: 18,
+    padding: 24,
     marginHorizontal: 20,
     marginBottom: 14,
     flexDirection: "row",
@@ -91,6 +102,7 @@ const styles = StyleSheet.create({
   status: {
     fontSize: 12,
     fontWeight: "600",
+    
   },
   iconBadge: {
     width: 42,

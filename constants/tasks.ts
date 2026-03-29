@@ -1,4 +1,4 @@
-export type TaskStatus = "Done" | "In Progress" | "To-do";
+export type TaskStatus = "To-do" | "In Progress" | "Done" | "Completed";
 
 export type TaskIcon = {
   name: string;
@@ -47,11 +47,19 @@ export const TASKS: Task[] = [
     status: "To-do",
     icon: { name: "bookmark", backgroundColor: "#FBBF24" },
   },
+  {
+    id: "5",
+    category: "About design sprint",
+    title: "How to pitch a Design Sprint",
+    time: "09:00 PM",
+    status: "Completed",
+    icon: { name: "bookmark", backgroundColor: "#FBBF24" },
+  },
 ];
 
 export const FILTER_OPTIONS = [
   "All",
-  "To do",
+  "To-do",
   "In Progress",
   "Completed",
 ] as const;

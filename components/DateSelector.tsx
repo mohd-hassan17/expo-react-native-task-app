@@ -99,4 +99,5 @@ const styles = StyleSheet.create({
   selectedText: {
     color: "#FFFFFF",
   },
+  
 });
